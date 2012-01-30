@@ -16,11 +16,17 @@ GPXML_NAMESPACE_START
 class Attribute
 {
 public:
-	Attribute();				// 默认构造函数
+	Attribute(void);				// 默认构造函数
 	Attribute(const char *, const char *);	// 指定属性名与属性值
 	Attribute(const char *);			// 通过表达式(属性名="属性值")初始化对象
 	Attribute(const Attribute &);	// 复制构造函数
-	~Attribute();
+	~Attribute(void);
+	
+	int get_name( char ** );
+	int get_value( char ** );
+	
+	Attribute & operator () (const char *, const char *);
+	Attribute & operator () (const char *);
 private:
 	char* name;		// 属性名
 	char* value;	// 属性值
@@ -33,10 +39,12 @@ typedef Attribute* pAttribute;
 class Tag
 {
 public:
-	Tag();
-	Tag(
-	);
+	Tag(void);
+	Tag(const char *);
+	Tag(const Tag &);
 	~Tag();
+	
+	list<Attribute> & get_atts(void);
 	
 	bool add_attr(Attribute);
 protected:
