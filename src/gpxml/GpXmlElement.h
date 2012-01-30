@@ -17,13 +17,13 @@ class Attribute
 {
 public:
 	Attribute();				// 默认构造函数
-	Attribute(string, string);	// 指定属性名与属性值
-	Attribute(string);			// 通过表达式(属性名="属性值")初始化对象
+	Attribute(const char *, const char *);	// 指定属性名与属性值
+	Attribute(const char *);			// 通过表达式(属性名="属性值")初始化对象
 	Attribute(const Attribute &);	// 复制构造函数
 	~Attribute();
 private:
-	string name;	// 属性名
-	string value;	// 属性值
+	char* name;		// 属性名
+	char* value;	// 属性值
 };
 typedef Attribute* pAttribute;
 
@@ -34,13 +34,14 @@ class Tag
 {
 public:
 	Tag();
-	Tag(pAttribute);
+	Tag(
+	);
 	~Tag();
 	
 	bool add_attr(Attribute);
 protected:
-	string 		name;	// 标签名
-	pAttribute 	atts;	// 标签属性
+	char *name;	// 标签名
+	list<Attribute> atts;	// 标签属性
 };
 typedef Tag *pTag;
 

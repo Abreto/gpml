@@ -11,14 +11,18 @@
 
 #define GPXML_NAMESPACE_END		}
 
-#include <string>
+#include <cstring>
 #include <list>
 
 GPXML_NAMESPACE_START
 
-using std::string;
 using std::list;
-//using std::map;
+using std::strlen;
+using std::strcpy;
+using std::strncpy;
+using std::strchr;
+using std::strcat;
+using std::strncat;
 
 GPXML_NAMESPACE_END
 

@@ -18,12 +18,11 @@ class Document
 public:
 	Document();
 	Document(const char *filename);
-	Document(string filename);
 	Document(const Document &);
 	~Document();
 
 private:
-	cstring file;		// 文档文件名
+	char* file;		// 文档文件名
 	Element	root;		// 根元素
 };
 
