@@ -110,3 +110,75 @@ const T* Pointer<T>::operator +(unsigned int offset) const
 	else
 		return NULL;
 }
+
+template <class T>
+void * Pointer<T>::operator void *(void)
+{
+	return (void *)ptr;
+}
+
+template <class T>
+int * Pointer<T>::operator int *(void)
+{
+	return (int *)ptr;
+}
+
+template <class T>
+short * Pointer<T>::operator short *(void)
+{
+	return (short *)ptr;
+}
+
+template <class T>
+long * Pointer<T>::operator long *(void)
+{
+	return (long *)ptr;
+}
+
+template <class T>
+unsigned int * Pointer<T>::operator unsigned int *(void)
+{
+	return (unsigned int *)ptr;
+}
+
+template <class T>
+unsigned short * Pointer<T>::operator unsigned short *(void)
+{
+	return (unsigned short *)ptr;
+}
+
+template <class T>
+unsigned long * Pointer<T>::operator unsigned long *(void)
+{
+	return (unsigned long *)ptr;
+}
+
+template <class T>
+float * Pointer<T>::operator float *(void)
+{
+	return (float *)ptr;
+}
+
+template <class T>
+double * Pointer<T>::operator double *(void)
+{
+	return (double *)ptr;
+}
+
+template <class T>
+long double * Pointer<T>::operator long double *(void)
+{
+	return (long double *)ptr;
+}
+
+template <class T>
+char * Pointer<T>::operator char *(void)
+{
+	return (char *)ptr;
+}
+
+template <class T>
+unsigned char * Pointer<T>::operator unsigned char *(void)
+{
+	return (unsigned char *)ptr;
+}

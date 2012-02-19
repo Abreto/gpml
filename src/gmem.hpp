@@ -1,6 +1,9 @@
-/*
- * Copyright (c) Abreto <m@abreto.net>
+/*	gmem.hpp
+ * 内存管理
  * 
+ * Copyright (c) GPML团队
+ * 编写 Abreto <m@abreto.net>
+ * 版本 0.1a
  */
 #ifndef H_GMEM
 #define H_GMEM
@@ -29,18 +32,18 @@ public:
 	T * operator +(unsigned int);
 	const T * operator +(unsigned int) const;
 	
-	operator void *(void);
-	operator int *(void);
-	operator short *(void);
-	operator long *(void);
-	operator unsigned int *(void);
-	operator unsigned short *(void);
-	operator unsigned long *(void);
-	operator float *(void);
-	operator double *(void);
-	operator long double *(void);
-	operator char *(void);
-	operator unsigned char *(void);
+	void * operator void *(void);
+	int * operator int *(void);
+	short * operator short *(void);
+	long * operator long *(void);
+	unsigned int * operator unsigned int *(void);
+	unsigned short * operator unsigned short *(void);
+	unsigned long * operator unsigned long *(void);
+	float * operator float *(void);
+	double * operator double *(void);
+	long double * operator long double *(void);
+	char * operator char *(void);
+	unsigned char * operator unsigned char *(void);
 private:
 	T* 		ptr;
 	size_t*	use;
