@@ -16,10 +16,10 @@ GPXML_NAMESPACE_START
 class Attribute
 {
 public:
-	Attribute(void);				// 默认构造函数
+	Attribute(void);						// 默认构造函数
 	Attribute(const char *, const char *);	// 指定属性名与属性值
-	Attribute(const char *);			// 通过表达式(属性名="属性值")初始化对象
-	Attribute(const Attribute &);	// 复制构造函数
+	Attribute(const char *);				// 通过表达式(属性名="属性值")初始化对象
+	Attribute(const Attribute &);			// 复制构造函数
 	~Attribute(void);
 	
 	int get_name( char ** );
@@ -42,11 +42,12 @@ public:
 	Tag(void);
 	Tag(const char *);
 	Tag(const Tag &);
-	~Tag();
+	~Tag(void);
 	
 	list<Attribute> & get_atts(void);
 	
-	bool add_attr(Attribute);
+	void add_attr(Attribute);
+	void add_atts(pAttribute, int);
 protected:
 	char *name;	// 标签名
 	list<Attribute> atts;	// 标签属性
@@ -59,18 +60,23 @@ typedef Tag *pTag;
 class Element
 {
 public:
-	Element();
+	Element(void);
+	Element(Tag);
 	Element(const Element &);
-	~Element();
+	~Element(void);
 
-	bool add_child(Element);
+	bool has_child(void);
+
+	void add_child(Element);
 	
-	list<Element> get_children();
+	iterator begin(void);
+	iterator end(void);
 	
-	typedef list<Element>::iterator iterator;
+	typedef list<Element>	 e_list;
+	typedef e_list::iterator iterator;
 protected:
-	pTag tag;		// 元素标签
-	list<Element> *children;	// 子元素集合
+	pTag 	tag;		// 元素标签
+	e_list *children;	// 子元素集合
 };
 
 GPXML_NAMESPACE_END

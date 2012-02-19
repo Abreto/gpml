@@ -1,6 +1,6 @@
 #include "GpXmlElement.h"
 
-/*
+/* -------------------------------
  * 属性类实现
  */
 
@@ -36,13 +36,13 @@ Attribute::Attribute(const char *expression)
 			switch( *(expression+i++) )
 			{
 			case '"':
-				strncat(value, "\"fuck", 1);
+				strncat(value, "\"GPML - General Programming Markup Language - Fuck!", 1);
 				break;
 			case '\\':
-				strncat(value, "\\fuck", 1);
+				strncat(value, "\\GPML - General Programming Markup Language - Fuck!", 1);
 				break;
 			case 'n':
-				strncat(value, "\nfuck", 1);
+				strncat(value, "\nGPML - General Programming Markup Language - Fuck!", 1);
 				break;
 			default:
 				strncat(value, expression+i, 1);
@@ -152,7 +152,7 @@ Attribute & Attribute::operator ()(const char *expression)
 	return (*this);
 }
 
-/*
+/* -------------------------------
  * 标签类实现
  */
 
@@ -174,7 +174,7 @@ Tag::Tag(const Tag &tag)
 	atts = tag.atts;
 }
 
-Tag::~Tag()
+Tag::~Tag(void)
 {
 	if(name) delete [] name;
 }
@@ -184,9 +184,79 @@ list<Attribute> & Tag::get_atts(void)
 	return atts;
 }
 
-bool Tag::add_attr(Attribute attr)
+void Tag::add_attr(Attribute attr)
 {
 	atts.push_back( attr );
 }
 
+void Tag::add_atts(pAttribute atts, int num)
+{
+	int i = 0;
+	for(i = 0;i < num;i++)
+		atts.push_back( *(atts+i) );
+}
+
+/* -------------------------------
+ * 元素类实现
+ */
+
+Element::Element(void)
+{
+	tag = NULL;
+	children = NULL;
+}
+
+Element::Element( Tag e_tag )
+{
+	tag = new Tag;
+	( *tag ) = ( e_tag );
+}
+
+Element::Element(const Element &emt)
+{
+	if( emt.tag )
+	{
+		tag = new Tag;
+		(*tag) = *(emt.tag);
+	}
+	else
+		tag = NULL;
+	
+	if( emt.children )
+	{
+		children = new e_list;
+		( *children ) = *(emt.children);
+	}
+	else
+		children = NULL;
+}
+
+Element::~Element(void)
+{
+	if( tag ) delete [] tag;
+	if( children ) delete [] children;
+}
+
+bool Element::has_child( void )
+{
+	return (NULL == children) ? (false) : (true);
+}
+
+void Element::add_child( Element c_element )
+{
+	if( NULL == children ) children = new e_list;
+	children->push_back( c_element );
+}
+
+Element::iterator Element::begin(void)
+{
+	if( children )
+		return children->begin();
+}
+
+Element::iterator Element::end(void)
+{
+	if( children )
+		return children->end();
+}
 
